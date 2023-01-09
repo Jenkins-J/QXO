@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask
 from qiskit import *
 from matplotlib import *
 
@@ -24,7 +24,7 @@ def my_qiskit():
     number_dict = result.get_counts(circuit)
     number = conv_bin_to_dec(number_dict)
     #print(result.get_counts(circuit))
-    return render_template("index.html", number=number)
+    return str(number)
 
 def conv_bin_to_dec(number_dict):
     for num in number_dict:
