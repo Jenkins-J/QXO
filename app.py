@@ -1,6 +1,7 @@
 from flask import Flask
 from qiskit import *
 from matplotlib import *
+import math
 
 app = Flask(__name__)
 
@@ -23,10 +24,13 @@ def my_qiskit():
     result = execute(circuit, backend=simulator, shots=1).result()
     number_dict = result.get_counts(circuit)
     number = conv_bin_to_dec(number_dict)
+    int_dict = {"number":number}
     #print(result.get_counts(circuit))
-    return str(number)
+    return int_dict
 
 def conv_bin_to_dec(number_dict):
     for num in number_dict:
         bin_string = str(num)
-    return int(bin_string, 2)
+    num =  int(bin_string, 2)
+    num = math.floor(num * (8/15))
+    return num
