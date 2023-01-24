@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 from qiskit import *
 from matplotlib import *
 import math
@@ -11,6 +11,26 @@ def hello():
 
 @app.route("/qiskit")
 def my_qiskit():
+    space1 = request.args.get('space1')
+    space2 = request.args.get('space2')
+    space3 = request.args.get('space3')
+    space4 = request.args.get('space4')
+    space5 = request.args.get('space5')
+    space6 = request.args.get('space6')
+    space7 = request.args.get('space7')
+    space8 = request.args.get('space8')
+    space9 = request.args.get('space9')
+
+    print(f'space 1: {space1}')
+    print(f'space 2: {space2}')
+    print(f'space 3: {space3}')
+    print(f'space 4: {space4}')
+    print(f'space 5: {space5}')
+    print(f'space 6: {space6}')
+    print(f'space 7: {space7}')
+    print(f'space 8: {space8}')
+    print(f'space 9: {space9}')
+
     qr = QuantumRegister(4)
     cr = ClassicalRegister(4)
     circuit = QuantumCircuit(qr, cr)
