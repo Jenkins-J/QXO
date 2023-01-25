@@ -1,6 +1,7 @@
 local board = script.Parent
 local RunService = game:GetService("RunService")
 local ChatService = game:GetService("Chat")
+local HTTPService = game:GetService("HttpService")
 local gameoverSent = false
 local playerMark = "X"
 local computerMark = "O"
@@ -200,7 +201,10 @@ local function addComputerMark(mark)
 	local spaces = board.SurfaceGui:GetChildren()
 	local spaceFound = false
 	while not spaceFound do
-		local random = math.random(1,9)
+		local url = "http://localhost:5000/qiskit"
+		local res = HTTPService:GetAsync(url)
+		local data = HTTPService:JSONDecode(res)
+		local random = tostring(data.number)
 		for _, space in pairs(spaces) do
 			if space:IsA("TextButton") and space.Text == "" and string.match(space.Name,random) then
 				space.Text = mark
