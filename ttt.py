@@ -1,5 +1,6 @@
 # tic tac toe related logic
 
+#TODO: need to pass in board state
 def moves():
     m = win_moves()
     if len(m) > 0:
@@ -28,8 +29,65 @@ def moves():
 
     return []
 
+#need to pass in board state
 def win_moves():
     print("Not implemented yet")
+    m = check_column_1()
+    if len(m) > 0 :
+        return m 
+    m = check_column_2()
+    if len(m) > 0 :
+        return m 
+    m = check_column_3()
+    if len(m) > 0 :
+        return m 
+    m = check_row_1()
+    if len(m) > 0 :
+        return m 
+    m = check_row_2()
+    if len(m) > 0 :
+        return m 
+    m = check_row_3()
+    if len(m) > 0 :
+        return m 
+    m = check_diagonal_1()
+    if len(m) > 0 :
+        return m 
+    m = check_diagonal_2()
+    if len(m) > 0 :
+        return m 
+
+def check_column_1(space1,space4,space7) -> []:
+    print("Not implemented yet")
+    return[]
+
+def check_column_2(space2,space5,space8) -> []:
+    print("Not implemented yet")
+    return[]
+
+def check_column_3(space3,space6,space9) -> []:
+    print("Not implemented yet")
+    return[]
+
+def check_row_1(space1,space2,space3) -> []:
+    print("Not implemented yet")
+    return[]
+
+def check_row_2(space4, space5,space6) -> []: 
+    print("Not implemented yet")
+    return[]
+
+def check_row_3(space7,space8,space9) -> []:
+    print("Not implemented yet")
+    return[]
+
+def check_diagonal_1(space1,space5,space9) -> []:
+    print("Not implemented yet")
+    return[]
+
+def check_diagonal_2(space3,space5,space7) -> []:
+    print("Not implemented yet")
+    return[]
 
 def block_moves():
     print("Not implemented yet")
