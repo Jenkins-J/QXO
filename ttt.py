@@ -1,8 +1,10 @@
 # tic tac toe related logic
 
 #TODO: need to pass in board state
-def moves():
-    m = win_moves()
+def moves(space1: int, space2: int, space3: int, space4: int, space5: int, space6: int, space7: int, space8: int, space9: int, mark_in: int):
+    global mark
+    mark = mark_in
+    m = win_moves(space1, space2, space3, space4, space5, space6, space7, space8, space9)
     if len(m) > 0:
         return m
     m = block_moves()
@@ -29,65 +31,113 @@ def moves():
 
     return []
 
-#need to pass in board state
-def win_moves():
-    print("Not implemented yet")
-    m = check_column_1()
-    if len(m) > 0 :
-        return m 
-    m = check_column_2()
-    if len(m) > 0 :
-        return m 
-    m = check_column_3()
-    if len(m) > 0 :
-        return m 
-    m = check_row_1()
-    if len(m) > 0 :
-        return m 
-    m = check_row_2()
-    if len(m) > 0 :
-        return m 
-    m = check_row_3()
-    if len(m) > 0 :
-        return m 
-    m = check_diagonal_1()
-    if len(m) > 0 :
-        return m 
-    m = check_diagonal_2()
-    if len(m) > 0 :
-        return m 
+def win_moves(space1, space2, space3, space4, space5, space6, space7, space8, space9) -> []:
+    m = []
+    result = check_column_1(space1,space4,space7)
+    if result != 0:
+        m.append(result)
+    result = check_column_2(space2,space5,space8)
+    if result != 0:
+        m.append(result)
+    result = check_column_3(space3,space6, space9)
+    if result != 0:
+        m.append(result)
+    result = check_row_1(space1,space2,space3)
+    if result != 0:
+        m.append(result)
+    result = check_row_2(space4,space5,space6)
+    if result != 0:
+        m.append(result)
+    result = check_row_3(space7,space8,space9)
+    if result != 0:
+        m.append(result)
+    result = check_diagonal_1(space1,space5,space9)
+    if result != 0:
+        m.append(result)
+    result = check_diagonal_2(space3,space5,space7)
+    if  result != 0:
+        m.append(result)
+    return m  
 
-def check_column_1(space1,space4,space7) -> []:
-    print("Not implemented yet")
-    return[]
+#1,4,7
+def check_column_1(space1,space2,space3) -> int:
+    if(space1 == mark and space1 == space2 and space3 == None):
+        return 7
+    elif(space2 == mark and space2 == space3 and space1 == None):
+        return 1
+    elif(space1 == mark and space1 == space3 and space2 == None):
+        return 4
+    return 0
 
-def check_column_2(space2,space5,space8) -> []:
-    print("Not implemented yet")
-    return[]
+#2,5,8
+def check_column_2(space1,space2,space3) -> int:
+    if(space1 == mark and space1 == space2 and space3 == None):
+        return 8
+    elif(space2 == mark and space2 == space3 and space1 == None):
+        return 2
+    elif(space1 == mark and space1 == space3 and space2 == None):
+        return 5
+    return 0
 
-def check_column_3(space3,space6,space9) -> []:
-    print("Not implemented yet")
-    return[]
+#3,6,9
+def check_column_3(space1,space2,space3) -> int:
+    if(space1 == mark and space1 == space2 and space3 == None):
+        return 9
+    elif(space2 == mark and space2 == space3 and space1 == None):
+        return 3
+    elif(space1 == mark and space1 == space3 and space2 == None):
+        return 6
+    return 0 
 
-def check_row_1(space1,space2,space3) -> []:
-    print("Not implemented yet")
-    return[]
+#1,2,3
+def check_row_1(space1,space2,space3) -> int:
+    if(space1 == mark and space1 == space2 and space3 == None):
+        return 3
+    elif(space2 == mark and space2 == space3 and space1 == None):
+        return 1
+    elif(space1 == mark and space1 == space3 and space2 == None):
+        return 2
+    return 0
 
-def check_row_2(space4, space5,space6) -> []: 
-    print("Not implemented yet")
-    return[]
+#4,5,6
+def check_row_2(space1, space2,space3) -> int: 
+    if(space1 == mark and space1 == space2 and space3 == None):
+        return 6
+    elif(space2 == mark and space2 == space3 and space1 == None):
+        return 4
+    elif(space1 == mark and space1 == space3 and space2 == None):
+        return 5
+    return 0
 
-def check_row_3(space7,space8,space9) -> []:
-    print("Not implemented yet")
-    return[]
+#7,8,9
+def check_row_3(space1,space2,space3) -> int:
+    if(space1 == mark and space1 == space2 and space3 == None):
+        return 9
+    elif(space2 == mark and space2 == space3 and space1 == None):
+        return 7
+    elif(space1 == mark and space1 == space3 and space2 == None):
+        return 8
+    return 0
 
-def check_diagonal_1(space1,space5,space9) -> []:
-    print("Not implemented yet")
-    return[]
+#1,5,9
+def check_diagonal_1(space1,space2,space3) -> int:
+    if(space1 == mark and space1 == space2 and space3 == None):
+        return 9
+    elif(space2 == mark and space2 == space3 and space1 == None):
+        return 1
+    elif(space1 == mark and space1 == space3 and space2 == None):
+        return 5
+    return 0
 
-def check_diagonal_2(space3,space5,space7) -> []:
-    print("Not implemented yet")
-    return[]
+#3,5,7
+def check_diagonal_2(space1,space2,space3) -> int: 
+    if(space1 == mark and space1 == space2 and space3 == None):
+        return 7
+    elif(space2 == mark and space2 == space3 and space1 == None):
+        return 3
+    elif(space1 == mark and space1 == space3 and space2 == None):
+        return 5
+    return 0
 
 def block_moves():
     print("Not implemented yet")

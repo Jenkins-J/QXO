@@ -2,6 +2,7 @@ from flask import Flask, request
 from qiskit import *
 from matplotlib import *
 import math
+import ttt
 
 app = Flask(__name__)
 
@@ -20,6 +21,8 @@ def my_qiskit():
     space7 = request.args.get('space7')
     space8 = request.args.get('space8')
     space9 = request.args.get('space9')
+    #if 1 computer is x if 0 computer is O
+    mark = request.args.get('mark')
 
     print(f'space 1: {space1}')
     print(f'space 2: {space2}')
@@ -30,23 +33,46 @@ def my_qiskit():
     print(f'space 7: {space7}')
     print(f'space 8: {space8}')
     print(f'space 9: {space9}')
+    print(f'mark: {mark}')
 
-    qr = QuantumRegister(4)
-    cr = ClassicalRegister(4)
-    circuit = QuantumCircuit(qr, cr)
-    #%matplotlib inline
-    circuit.h(qr[0])
-    circuit.h(qr[1])
-    circuit.h(qr[2]) 
-    circuit.h(qr[3])
-    circuit.measure(qr,cr)
-    simulator = Aer.get_backend('qasm_simulator')
-    result = execute(circuit, backend=simulator, shots=1).result()
-    number_dict = result.get_counts(circuit)
-    number = conv_bin_to_dec(number_dict)
-    int_dict = {"number":number}
-    #print(result.get_counts(circuit))
+    m = ttt.moves(space1,space2,space3,space4,space5,space6,space7,space8,space9,mark)
+    #print(m)
+
+    # build quantum circuit if there is only one possible move 
+    if len(m) == 1 : 
+        print("Need to implement quantum circuit for single move ")
+        #qr = QuantumRegister(2)
+        #cr = ClassicalRegister(2)
+        #circuit = QuantumCircuit(qr, cr)
+        #%matplotlib inline
+        #circuit.x(qr[0])
+        #circuit.x(qr[1])
+        #circuit.measure(qr,cr)
+        #simulator = Aer.get_backend('qasm_simulator')
+        #result = execute(circuit, backend=simulator, shots=1).result()
+        #number_dict = result.get_counts(circuit)
+        #number = conv_bin_to_dec(number_dict)
+        #print(f'NUMBER after circuit: {number}')
+        int_dict = {"number":m[0]}
+    else: # if no winning move, generate a random space to play
+        print('INFO: Generating Random Number to play')
+        qr = QuantumRegister(4)
+        cr = ClassicalRegister(4)
+        circuit = QuantumCircuit(qr, cr)
+        #%matplotlib inline
+        circuit.h(qr[0])
+        circuit.h(qr[1])
+        circuit.h(qr[2]) 
+        circuit.h(qr[3])
+        circuit.measure(qr,cr)
+        simulator = Aer.get_backend('qasm_simulator')
+        result = execute(circuit, backend=simulator, shots=1).result()
+        number_dict = result.get_counts(circuit)
+        number = conv_bin_to_dec(number_dict)
+        int_dict = {"number":number}
+        #print(result.get_counts(circuit))
     return int_dict
+
 
 def conv_bin_to_dec(number_dict):
     for num in number_dict:
