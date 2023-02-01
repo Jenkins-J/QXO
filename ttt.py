@@ -7,6 +7,10 @@ def moves(space1: int, space2: int, space3: int, space4: int, space5: int, space
     m = win_moves(space1, space2, space3, space4, space5, space6, space7, space8, space9)
     if len(m) > 0:
         return m
+    else:
+        return []
+    # NOT IMPLEMENTED YET
+    '''
     m = block_moves()
     if len(m) > 0:
         return m
@@ -28,9 +32,8 @@ def moves(space1: int, space2: int, space3: int, space4: int, space5: int, space
     m = empty_side()
     if len(m) > 0:
         return m
-
     return []
-
+    '''
 def win_moves(space1, space2, space3, space4, space5, space6, space7, space8, space9) -> []:
     m = []
     result = check_column_1(space1,space4,space7)
