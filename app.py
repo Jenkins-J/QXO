@@ -50,6 +50,9 @@ def my_qiskit():
             circuit.measure(qr,cr)
             simulator = Aer.get_backend('qasm_simulator')
             result = execute(circuit, backend=simulator, shots=1).result()
+            drawing = circuit.draw(output="text")
+            print("Circuit Drawing: ")
+            print(drawing)
             number_dict = result.get_counts(circuit)
             for num in number_dict:
                 bin_string = str(num)
@@ -64,6 +67,9 @@ def my_qiskit():
             circuit.measure(qr,cr)
             simulator = Aer.get_backend('qasm_simulator')
             result = execute(circuit, backend=simulator, shots=1).result()
+            drawing = circuit.draw(output="text")
+            print("Circuit Drawing: ")
+            print(drawing)
             number_dict = result.get_counts(circuit)
             for num in number_dict:
                 bin_string = str(num)
@@ -79,6 +85,9 @@ def my_qiskit():
             circuit.measure(qr,cr)
             simulator = Aer.get_backend('qasm_simulator')
             result = execute(circuit, backend=simulator, shots=1).result()
+            drawing = circuit.draw(output="text")
+            print("Circuit Drawing: ")
+            print(drawing)
             number_dict = result.get_counts(circuit)
             for num in number_dict:
                 bin_string = str(num)
@@ -93,6 +102,9 @@ def my_qiskit():
             circuit.measure(qr,cr)
             simulator = Aer.get_backend('qasm_simulator')
             result = execute(circuit, backend=simulator, shots=1).result()
+            drawing = circuit.draw(output="text")
+            print("Circuit Drawing: ")
+            print(drawing)
             number_dict = result.get_counts(circuit)
             for num in number_dict:
                 bin_string = str(num)
@@ -108,6 +120,9 @@ def my_qiskit():
             circuit.measure(qr,cr)
             simulator = Aer.get_backend('qasm_simulator')
             result = execute(circuit, backend=simulator, shots=1).result()
+            drawing = circuit.draw(output="text")
+            print("Circuit Drawing: ")
+            print(drawing)
             number_dict = result.get_counts(circuit)
             for num in number_dict:
                 bin_string = str(num)
@@ -123,6 +138,9 @@ def my_qiskit():
             circuit.measure(qr,cr)
             simulator = Aer.get_backend('qasm_simulator')
             result = execute(circuit, backend=simulator, shots=1).result()
+            drawing = circuit.draw(output="text")
+            print("Circuit Drawing: ")
+            print(drawing)
             number_dict = result.get_counts(circuit)
             for num in number_dict:
                 bin_string = str(num)
@@ -139,6 +157,9 @@ def my_qiskit():
             circuit.measure(qr,cr)
             simulator = Aer.get_backend('qasm_simulator')
             result = execute(circuit, backend=simulator, shots=1).result()
+            drawing = circuit.draw(output="text")
+            print("Circuit Drawing: ")
+            print(drawing)
             number_dict = result.get_counts(circuit)
             for num in number_dict:
                 bin_string = str(num)
@@ -153,6 +174,9 @@ def my_qiskit():
             circuit.measure(qr,cr)
             simulator = Aer.get_backend('qasm_simulator')
             result = execute(circuit, backend=simulator, shots=1).result()
+            drawing = circuit.draw(output="text")
+            print("Circuit Drawing: ")
+            print(drawing)
             number_dict = result.get_counts(circuit)
             for num in number_dict:
                 bin_string = str(num)
@@ -168,12 +192,15 @@ def my_qiskit():
             circuit.measure(qr,cr)
             simulator = Aer.get_backend('qasm_simulator')
             result = execute(circuit, backend=simulator, shots=1).result()
+            drawing = circuit.draw(output="text")
+            print("Circuit Drawing: ")
+            print(drawing)
             number_dict = result.get_counts(circuit)
             for num in number_dict:
                 bin_string = str(num)
             number =  int(bin_string, 2)
             print(f'NUMBER after circuit: {number}')
-        int_dict = {"number":number}
+        int_dict = {"number":number, "circuit":str(drawing)}
     else: # if no winning move, generate a random space to play
         print('INFO: Generating Random Number to play')
         qr = QuantumRegister(4)
@@ -187,12 +214,14 @@ def my_qiskit():
         circuit.measure(qr,cr)
         simulator = Aer.get_backend('qasm_simulator')
         result = execute(circuit, backend=simulator, shots=1).result()
+        drawing = circuit.draw(output="text")
+        print("Circuit Drawing: ")
+        print(drawing)
         number_dict = result.get_counts(circuit)
         number = conv_bin_to_dec(number_dict)
-        int_dict = {"number":number}
+        int_dict = {"number":number, "circuit":str(drawing)}
         #print(result.get_counts(circuit))
     return int_dict
-
 
 def conv_bin_to_dec(number_dict):
     for num in number_dict:
