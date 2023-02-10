@@ -14,8 +14,6 @@ def moves(space1: int, space2: int, space3: int, space4: int, space5: int, space
     m = block_moves(space1, space2, space3, space4, space5, space6, space7, space8, space9)
     if len(m) > 0:
         return m
-    else:
-        return []
     if (mark == "1"):
         mark = "0"
     else:
@@ -28,12 +26,16 @@ def moves(space1: int, space2: int, space3: int, space4: int, space5: int, space
     m = block_fork()
     if len(m) > 0:
         return m
-    m = center_move()
+    '''
+    m = center_move(space5)
     if len(m) > 0:
         return m
-    m = opposite_corner()
+    m = opposite_corner(space1, space3, space7, space9)
     if len(m) > 0:
         return m
+    else:
+        return []
+    '''
     m = empty_corner()
     if len(m) > 0:
         return m
@@ -42,6 +44,7 @@ def moves(space1: int, space2: int, space3: int, space4: int, space5: int, space
         return m
     return []
     '''
+    
 def win_moves(space1, space2, space3, space4, space5, space6, space7, space8, space9) -> []:
     m = []
     result = check_column_1(space1,space4,space7)
@@ -184,11 +187,35 @@ def fork_moves():
 def block_fork():
     print("Not implemented yet")
 
-def center_move():
-    print("Not implemented yet")
+def center_move(space5) -> []:
+    if (space5 == None):
+        return [5]
+    return []
 
-def opposite_corner():
-    print("Not implemented yet")
+def opposite_corner(space1, space3, space7, space9) -> []:
+    m = []
+    result = check_opp_corner_1(space1,space9)
+    if result != 0:
+        m.append(result)
+    result = check_opp_corner_2(space3,space7)
+    if result != 0:
+        m.append(result)
+    return m
+
+def check_opp_corner_1(space1,space9) -> int:
+    if (space1 != mark and space9 == None):
+        return 9
+    if (space9 != mark and space1 == None):
+        return 1
+    return 0
+
+def check_opp_corner_2(space3,space7) -> int:
+    if (space3 != mark and space7 == None):
+        return 7
+    if (space7 != mark and space3 == None):
+        return 3
+    return 0
+
 
 def empty_corner():
     print("Not implemented yet")
