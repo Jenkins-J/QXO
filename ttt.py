@@ -6,14 +6,22 @@ def moves(space1: int, space2: int, space3: int, space4: int, space5: int, space
     mark = mark_in
     m = win_moves(space1, space2, space3, space4, space5, space6, space7, space8, space9)
     if len(m) > 0:
+        return m 
+    if (mark == "1"):
+        mark = "0"
+    else:
+        mark = "1"
+    m = block_moves(space1, space2, space3, space4, space5, space6, space7, space8, space9)
+    if len(m) > 0:
         return m
     else:
         return []
+    if (mark == "1"):
+        mark = "0"
+    else:
+        mark = "1"
     # NOT IMPLEMENTED YET
     '''
-    m = block_moves()
-    if len(m) > 0:
-        return m
     m = fork_moves()
     if len(m) > 0:
         return m
@@ -142,8 +150,33 @@ def check_diagonal_2(space1,space2,space3) -> int:
         return 5
     return 0
 
-def block_moves():
-    print("Not implemented yet")
+def block_moves(space1, space2, space3, space4, space5, space6, space7, space8, space9) -> []:
+    m = []
+    result = check_column_1(space1,space4,space7)
+    if result != 0:
+        m.append(result)
+    result = check_column_2(space2,space5,space8)
+    if result != 0:
+        m.append(result)
+    result = check_column_3(space3,space6, space9)
+    if result != 0:
+        m.append(result)
+    result = check_row_1(space1,space2,space3)
+    if result != 0:
+        m.append(result)
+    result = check_row_2(space4,space5,space6)
+    if result != 0:
+        m.append(result)
+    result = check_row_3(space7,space8,space9)
+    if result != 0:
+        m.append(result)
+    result = check_diagonal_1(space1,space5,space9)
+    if result != 0:
+        m.append(result)
+    result = check_diagonal_2(space3,space5,space7)
+    if  result != 0:
+        m.append(result)
+    return m
 
 def fork_moves():
     print("Not implemented yet")

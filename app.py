@@ -40,7 +40,7 @@ def my_qiskit():
     print(m)
 
     # build quantum circuit if there is only one possible move 
-    if len(m) == 1: 
+    if len(m) >= 1: 
         if m[0] == 1:
             print("Space 1 is the winning move ")
             qr = QuantumRegister(4)
