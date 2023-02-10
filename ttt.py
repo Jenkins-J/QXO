@@ -41,15 +41,12 @@ def moves(space1: int, space2: int, space3: int, space4: int, space5: int, space
     if len(m) > 0:
         print("Occupying empty corner")
         return m
-    else:
-        return []
-    '''
-    m = empty_side()
+
+    m = empty_side(space2, space4, space6, space8)
     if len(m) > 0:
         print("Occupying empty side")
         return m
     return []
-    '''
     
 def win_moves(space1, space2, space3, space4, space5, space6, space7, space8, space9) -> []:
     m = []
@@ -80,32 +77,32 @@ def win_moves(space1, space2, space3, space4, space5, space6, space7, space8, sp
     return m  
 
 #1,4,7
-def check_column_1(space1,space2,space3, mark) -> int:
-    if(space1 == mark and space1 == space2 and space3 == None):
+def check_column_1(space1,space4,space7, mark) -> int:
+    if(space1 == mark and space1 == space4 and space7 == None):
         return 7
-    elif(space2 == mark and space2 == space3 and space1 == None):
+    elif(space4 == mark and space4 == space7 and space1 == None):
         return 1
-    elif(space1 == mark and space1 == space3 and space2 == None):
+    elif(space1 == mark and space1 == space7 and space4 == None):
         return 4
     return 0
 
 #2,5,8
-def check_column_2(space1,space2,space3, mark) -> int:
-    if(space1 == mark and space1 == space2 and space3 == None):
+def check_column_2(space2,space5,space8, mark) -> int:
+    if(space2 == mark and space2 == space5 and space8 == None):
         return 8
-    elif(space2 == mark and space2 == space3 and space1 == None):
+    elif(space5 == mark and space5 == space8 and space2 == None):
         return 2
-    elif(space1 == mark and space1 == space3 and space2 == None):
+    elif(space2 == mark and space2 == space8 and space5 == None):
         return 5
     return 0
 
 #3,6,9
-def check_column_3(space1,space2,space3, mark) -> int:
-    if(space1 == mark and space1 == space2 and space3 == None):
+def check_column_3(space3,space6,space9, mark) -> int:
+    if(space3 == mark and space3 == space6 and space9 == None):
         return 9
-    elif(space2 == mark and space2 == space3 and space1 == None):
+    elif(space6 == mark and space6 == space9 and space3 == None):
         return 3
-    elif(space1 == mark and space1 == space3 and space2 == None):
+    elif(space3 == mark and space3 == space9 and space6 == None):
         return 6
     return 0 
 
@@ -120,42 +117,42 @@ def check_row_1(space1,space2,space3, mark) -> int:
     return 0
 
 #4,5,6
-def check_row_2(space1, space2,space3, mark) -> int: 
-    if(space1 == mark and space1 == space2 and space3 == None):
+def check_row_2(space4,space5,space6, mark) -> int: 
+    if(space4 == mark and space4 == space5 and space6 == None):
         return 6
-    elif(space2 == mark and space2 == space3 and space1 == None):
+    elif(space5 == mark and space5 == space6 and space4 == None):
         return 4
-    elif(space1 == mark and space1 == space3 and space2 == None):
+    elif(space4 == mark and space4 == space6 and space5 == None):
         return 5
     return 0
 
 #7,8,9
-def check_row_3(space1,space2,space3, mark) -> int:
-    if(space1 == mark and space1 == space2 and space3 == None):
+def check_row_3(space7,space8,space9, mark) -> int:
+    if(space7 == mark and space7 == space8 and space9 == None):
         return 9
-    elif(space2 == mark and space2 == space3 and space1 == None):
+    elif(space8 == mark and space8 == space9 and space7 == None):
         return 7
-    elif(space1 == mark and space1 == space3 and space2 == None):
+    elif(space7 == mark and space7 == space9 and space8 == None):
         return 8
     return 0
 
 #1,5,9
-def check_diagonal_1(space1,space2,space3, mark) -> int:
-    if(space1 == mark and space1 == space2 and space3 == None):
+def check_diagonal_1(space1,space5,space9, mark) -> int:
+    if(space1 == mark and space1 == space5 and space9 == None):
         return 9
-    elif(space2 == mark and space2 == space3 and space1 == None):
+    elif(space5 == mark and space5 == space9 and space1 == None):
         return 1
-    elif(space1 == mark and space1 == space3 and space2 == None):
+    elif(space1 == mark and space1 == space9 and space5 == None):
         return 5
     return 0
 
 #3,5,7
-def check_diagonal_2(space1,space2,space3, mark) -> int: 
-    if(space1 == mark and space1 == space2 and space3 == None):
+def check_diagonal_2(space3,space5,space7, mark) -> int: 
+    if(space3 == mark and space3 == space5 and space7 == None):
         return 7
-    elif(space2 == mark and space2 == space3 and space1 == None):
+    elif(space5 == mark and space5 == space7 and space3 == None):
         return 3
-    elif(space1 == mark and space1 == space3 and space2 == None):
+    elif(space3 == mark and space3 == space7 and space5 == None):
         return 5
     return 0
 
@@ -235,6 +232,15 @@ def empty_corner(space1, space3, space7, space9) -> []:
         m.append(9)
     return m
 
-def empty_side():
-    print("Not implemented yet")
-
+def empty_side(space2, space4, space6, space8) -> []:
+    m = []
+    if (space2 == None):
+        m.append(2)
+    if (space4 == None):
+        m.append(4)
+    if (space6 == None):
+        m.append(6)
+    if (space8 == None):
+        m.append(8)
+    return m
+    
