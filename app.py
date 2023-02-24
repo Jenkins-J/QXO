@@ -216,7 +216,7 @@ def my_qiskit():
         result = execute(circuit, backend=simulator, shots=1).result()
         drawing = circuit.draw(output="text")
         print("Circuit Drawing: ")
-        print(drawing)
+        print(str(drawing))
         number_dict = result.get_counts(circuit)
         number = conv_bin_to_dec(number_dict)
         int_dict = {"number":number, "circuit":str(drawing)}

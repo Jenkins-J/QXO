@@ -31,7 +31,7 @@ def moves(space1: int, space2: int, space3: int, space4: int, space5: int, space
     if len(m) > 0:
         print("Occupying empty center")
         return m
-
+    '''
     m = opposite_corner(space1, space3, space7, space9)
     if len(m) > 0:
         print("Occupying opposite corner from player")
@@ -41,7 +41,8 @@ def moves(space1: int, space2: int, space3: int, space4: int, space5: int, space
     if len(m) > 0:
         print("Occupying empty corner")
         return m
-
+    '''
+    
     m = empty_side(space2, space4, space6, space8)
     if len(m) > 0:
         print("Occupying empty side")
